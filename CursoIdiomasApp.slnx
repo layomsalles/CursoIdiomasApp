@@ -1,0 +1,12 @@
+<Solution>
+  <Folder Name="/Application/">
+    <Project Path="CursoIdiomasApp.Api/CursoIdiomasApp.Api.csproj" />
+  </Folder>
+  <Folder Name="/Domain/">
+    <Project Path="CursoIdiomasApp.Domain/CursoIdiomasApp.Domain.csproj" />
+  </Folder>
+  <Folder Name="/Infrastructure/">
+    <Project Path="CursoIdiomasApp.Infra.Data/CursoIdiomasApp.Infra.Data.csproj" />
+  </Folder>
+  <Folder Name="/Tests/" />
+</Solution>
