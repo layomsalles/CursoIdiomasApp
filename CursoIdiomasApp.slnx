@@ -8,5 +8,8 @@
   <Folder Name="/Infrastructure/">
     <Project Path="CursoIdiomasApp.Infra.Data/CursoIdiomasApp.Infra.Data.csproj" />
   </Folder>
+  <Folder Name="/Itens de Solução/">
+    <File Path="docker-compose.yml" />
+  </Folder>
   <Folder Name="/Tests/" />
 </Solution>

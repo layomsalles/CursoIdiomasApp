@@ -1,0 +1,18 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: CursoIdiomasApp.SqlServer
+    restart: unless-stopped
+
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_SA_PASSWORD: "Curso@2026"
+
+    ports:
+      - "1435:1433"
+
+    volumes:
+      - curso_idiomas_sqlserver_data:/var/opt/mssql
+
+volumes:
+  curso_idiomas_sqlserver_data:
