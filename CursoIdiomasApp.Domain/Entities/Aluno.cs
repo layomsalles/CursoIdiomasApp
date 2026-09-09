@@ -15,12 +15,17 @@ namespace CursoIdiomasApp.Domain.Entities
 
         protected Aluno() { }
 
-        public Aluno(string nome, string cpf, string email)
+        public Aluno(string nome, Cpf cpf, Email email)
         {
             if (string.IsNullOrWhiteSpace(nome))
             {
                 throw new ArgumentException("O nome é obrigatório");
             }
+
+            Id = Guid.NewGuid();
+            Nome = nome;
+            Cpf = cpf;
+            Email = email;
         }
     }
 }

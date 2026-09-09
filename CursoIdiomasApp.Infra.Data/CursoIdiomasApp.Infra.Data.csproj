@@ -23,4 +23,9 @@
     <ProjectReference Include="..\CursoIdiomasApp.Domain\CursoIdiomasApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Mappings\" />
+    <Folder Include="Contexts\" />
+  </ItemGroup>
+
 </Project>
