@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CursoIdiomasApp.Domain\CursoIdiomasApp.Domain.csproj" />
     <ProjectReference Include="..\CursoIdiomasApp.Infra.Data\CursoIdiomasApp.Infra.Data.csproj" />
   </ItemGroup>
 
