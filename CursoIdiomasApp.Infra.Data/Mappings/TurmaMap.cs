@@ -17,7 +17,7 @@ namespace CursoIdiomasApp.Infra.Data.Mappings
 
             builder.Property(t => t.AnoLetivo).IsRequired();
 
-            builder.HasMany(t => t.Matriculas).WithOne().HasForeignKey(t => t.AlunoId);
+            builder.HasMany(t => t.Matriculas).WithOne().HasForeignKey(t => t.TurmaId);
         }
     }
 }

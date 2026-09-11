@@ -1,6 +1,7 @@
 ﻿using CursoIdiomasApp.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using CursoIdiomasApp.Domain.Value_Objects;
 
 namespace CursoIdiomasApp.Infra.Data.Mappings
 {
@@ -14,13 +15,13 @@ namespace CursoIdiomasApp.Infra.Data.Mappings
 
             builder.Property(a => a.Nome).IsRequired().HasMaxLength(30);
 
-            builder.Property(a => a.Cpf).IsRequired().HasMaxLength(11);
+            builder.Property(a => a.Cpf).HasConversion(cpf => cpf.Valor, valor => new Cpf(valor)).IsRequired().HasMaxLength(11);
             builder.HasIndex(a => a.Cpf).IsUnique();
 
-            builder.Property(a => a.Email).IsRequired();
+            builder.Property(a => a.Email).HasConversion(email => email.Valor, valor => new Email(valor)).IsRequired();
             builder.HasIndex(a => a.Email).IsUnique();
 
-            builder.HasMany(a => a.Matriculas).WithOne().HasForeignKey(a => a.TurmaId);
+            builder.HasMany(a => a.Matriculas).WithOne().HasForeignKey(a => a.AlunoId);
         }
     }
 }
