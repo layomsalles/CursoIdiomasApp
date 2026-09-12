@@ -38,5 +38,11 @@ namespace CursoIdiomasApp.Domain.Entities
 
             _matriculas.Add(matricula);
         }
+
+        public void AtualizarTurma(int numero, TurmaEnum anoLetivo)
+        {
+            Numero = numero;
+            AnoLetivo = anoLetivo;
+        }
     }
 }

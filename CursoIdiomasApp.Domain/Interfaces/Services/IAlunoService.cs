@@ -7,7 +7,7 @@ namespace CursoIdiomasApp.Domain.Interfaces.Services
     {
         AlunoResponse CreateAluno(AlunoRequest alunoRequest);
         List<AlunoResponse> GetAllAlunos();
-        AlunoUpdateRequest DeleteAluno();
+        AlunoDeleteResponse DeleteAluno(Guid id);
         AlunoResponse UpdateAluno(AlunoUpdateRequest alunoUpdateRequest);
     }
 }

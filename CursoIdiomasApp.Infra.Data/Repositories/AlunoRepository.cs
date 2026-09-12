@@ -23,6 +23,11 @@ namespace CursoIdiomasApp.Infra.Data.Repositories
             return dataContext.Set<Aluno>().OrderBy(a => a.Nome).ToList();
         }
 
+        public Aluno? GetById(Guid id)
+        {
+            return dataContext.Set<Aluno>().FirstOrDefault(aluno => aluno.Id == id);
+        }
+
         public void Update(Aluno aluno)
         {
             dataContext.Set<Aluno>().Update(aluno);

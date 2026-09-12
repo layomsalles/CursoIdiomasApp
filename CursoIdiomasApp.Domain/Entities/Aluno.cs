@@ -27,5 +27,10 @@ namespace CursoIdiomasApp.Domain.Entities
             Cpf = cpf;
             Email = email;
         }
+
+        public void AtualizarAluno(Email email)
+        {
+            Email = email;
+        }
     }
 }

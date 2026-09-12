@@ -7,7 +7,7 @@ namespace CursoIdiomasApp.Domain.Interfaces.Services
     {
         TurmaResponse CreateTurma(TurmaRequest turmaRequest);
         List<TurmaResponse> GetAllTurmas();
-        TurmaDeleteResponse DeleteTurma();
+        TurmaDeleteResponse DeleteTurma(Guid id);
         TurmaResponse UpdateTurma(TurmaRequest turmaRequest);
     }
 }

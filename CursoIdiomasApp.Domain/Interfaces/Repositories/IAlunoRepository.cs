@@ -6,6 +6,7 @@ namespace CursoIdiomasApp.Domain.Interfaces.Repositories
     {
         void Create(Aluno aluno);
         List<Aluno> GetAll();
+        Aluno? GetById(Guid id);
         void Update(Aluno aluno);
         void Delete(Aluno aluno);
     }
