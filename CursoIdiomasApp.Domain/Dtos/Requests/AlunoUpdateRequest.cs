@@ -5,8 +5,6 @@ namespace CursoIdiomasApp.Domain.Dtos.Requests
 {
     public record AlunoUpdateRequest(
         [Required]
-        Guid id,
-        [Required]
-        Email email
+        string email
         );
 }

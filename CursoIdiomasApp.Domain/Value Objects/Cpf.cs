@@ -7,7 +7,7 @@
         private Cpf() { }
 
         public Cpf(string valor) { 
-            if(!string.IsNullOrEmpty(valor))
+            if(string.IsNullOrEmpty(valor))
             {
                 throw new ArgumentException("Cpf inválido");
             }
@@ -16,6 +16,9 @@
             {
                 throw new ArgumentException("Cpf deve possuir 11 dígitos");
             }
+
+            if (!valor.All(char.IsDigit))
+                throw new ArgumentException("CPF deve possuir apenas números.");
 
             Valor = valor;
         }

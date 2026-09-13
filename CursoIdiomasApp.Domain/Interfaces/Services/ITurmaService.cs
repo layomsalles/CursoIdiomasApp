@@ -8,6 +8,6 @@ namespace CursoIdiomasApp.Domain.Interfaces.Services
         TurmaResponse CreateTurma(TurmaRequest turmaRequest);
         List<TurmaResponse> GetAllTurmas();
         TurmaDeleteResponse DeleteTurma(Guid id);
-        TurmaResponse UpdateTurma(TurmaRequest turmaRequest);
+        TurmaResponse UpdateTurma(Guid id, TurmaRequest turmaRequest);
     }
 }

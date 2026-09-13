@@ -9,9 +9,9 @@ namespace CursoIdiomasApp.Domain.Entities
         public int Numero { get; set; } = 0;
         public TurmaEnum AnoLetivo { get; set; } = TurmaEnum.Basico;
 
-        private readonly List<Matricula> _matriculas = []; //conceito é chamado de encapsulamento das invariantes do domínio.
+        private readonly List<Matricula> _matriculas = []; //conceito chamado de encapsulamento das invariantes do domínio.
 
-        public IReadOnlyCollection<Matricula> Matriculas => _matriculas; //conceito é chamado de encapsulamento das invariantes do domínio.
+        public IReadOnlyCollection<Matricula> Matriculas => _matriculas; //conceito chamado de encapsulamento das invariantes do domínio.
 
         protected Turma() { }
 
@@ -22,14 +22,17 @@ namespace CursoIdiomasApp.Domain.Entities
             AnoLetivo = turma;
         }
 
+        //Método para validar as regras:
         public void MatricularAluno(Aluno aluno)
         {
+            //regra: Turma não pode ter mais de 5 alunos
             if (_matriculas.Count > 5)
             {
                 throw new DomainException("A turma não pode possuir mais de 5 alunos");
             }
 
-            if(_matriculas.Any(m => m.AlunoId == aluno.Id))
+            //regra: Aluno não pode se matricular duas vezes na mesma turma
+            if (_matriculas.Any(m => m.AlunoId == aluno.Id))
             {
                 throw new DomainException("O aluno já está matriculado nessa turma");
             }

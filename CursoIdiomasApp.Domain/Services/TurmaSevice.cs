@@ -7,7 +7,7 @@ using CursoIdiomasApp.Domain.Interfaces.Services;
 
 namespace CursoIdiomasApp.Domain.Services
 {
-    internal class TurmaSevice(ITurmaRepository turmaRepository) : ITurmaService
+    public class TurmaSevice(ITurmaRepository turmaRepository) : ITurmaService
     {
         public TurmaResponse CreateTurma(TurmaRequest turmaRequest)
         {
@@ -43,9 +43,9 @@ namespace CursoIdiomasApp.Domain.Services
             return turma.Select(t => new TurmaResponse(t.Id, t.Numero, t.AnoLetivo)).ToList();
         }
 
-        public TurmaResponse UpdateTurma(TurmaRequest turmaRequest)
+        public TurmaResponse UpdateTurma(Guid id, TurmaRequest turmaRequest)
         {
-            var turma = turmaRepository.GetById(turmaRequest.id);
+            var turma = turmaRepository.GetById(id);
 
             if(turma == null)
             {
