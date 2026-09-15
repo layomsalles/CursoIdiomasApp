@@ -7,6 +7,7 @@ namespace CursoIdiomasApp.Domain.Interfaces.Repositories
         void Create(Turma turma);
         List<Turma> GetAll();
         Turma? GetById(Guid id);
+        Turma? GetByIdComMatriculas(Guid id);
         void Update(Turma turma);
         void Delete(Turma turma);
     }

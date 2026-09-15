@@ -1,6 +1,7 @@
 ﻿using CursoIdiomasApp.Domain.Entities;
 using CursoIdiomasApp.Domain.Interfaces.Repositories;
 using CursoIdiomasApp.Infra.Data.Contexts;
+using Microsoft.EntityFrameworkCore;
 
 namespace CursoIdiomasApp.Infra.Data.Repositories
 {
@@ -26,6 +27,11 @@ namespace CursoIdiomasApp.Infra.Data.Repositories
         public Turma? GetById(Guid id)
         {
             return dataContext.Set<Turma>().FirstOrDefault(turma => turma.Id == id);
+        }
+
+        public Turma? GetByIdComMatriculas(Guid id)
+        {
+            return dataContext.Set<Turma>().Include(t => t.Matriculas).FirstOrDefault(t => t.Id == id);
         }
 
         public void Update(Turma turma)

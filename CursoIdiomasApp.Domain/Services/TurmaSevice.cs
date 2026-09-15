@@ -1,13 +1,14 @@
 ﻿using CursoIdiomasApp.Domain.Dtos.Requests;
 using CursoIdiomasApp.Domain.Dtos.Responses;
 using CursoIdiomasApp.Domain.Entities;
+using CursoIdiomasApp.Domain.Exceptions;
 using CursoIdiomasApp.Domain.Interfaces.Repositories;
 using CursoIdiomasApp.Domain.Interfaces.Services;
 
 
 namespace CursoIdiomasApp.Domain.Services
 {
-    public class TurmaSevice(ITurmaRepository turmaRepository) : ITurmaService
+    public class TurmaSevice(ITurmaRepository turmaRepository, IMatriculaRepository matriculaRepository) : ITurmaService
     {
         public TurmaResponse CreateTurma(TurmaRequest turmaRequest)
         {
@@ -29,6 +30,16 @@ namespace CursoIdiomasApp.Domain.Services
             if(turma == null)
             {
                 throw new ApplicationException("Turma não encontrada");
+            }
+
+            //Verificando se aluno está matriculado em uma turma
+            var matriculas = matriculaRepository.GetByTurma(id);
+
+            if (matriculas.Any())
+            {
+                throw new DomainException(
+                    "A turma não pode ser excluída porque possui alunos matriculados"
+                );
             }
 
             turmaRepository.Delete(turma);

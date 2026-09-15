@@ -7,7 +7,7 @@ using CursoIdiomasApp.Domain.Interfaces.Services;
 
 namespace CursoIdiomasApp.Domain.Services
 {
-    public class MatriculaService(IMatriculaRepository matriculaRepository) : IMatriculaService
+    public class MatriculaService(IMatriculaRepository matriculaRepository, ITurmaRepository turmaRepository, IAlunoRepository alunoRepository) : IMatriculaService
     {
         public MatriculaDeleteResponse CancelarMatricula(Guid Id)
         {
@@ -17,6 +17,15 @@ namespace CursoIdiomasApp.Domain.Services
             {
                 throw new DomainException("Matricula não encontrada");
             }
+
+            var turma = turmaRepository.GetByIdComMatriculas(matricula.TurmaId);
+
+            if (turma == null)
+            {
+                throw new DomainException("Turma não encontrada");
+            }
+
+            turma.CancelarMatricula(Id);
 
             matriculaRepository.Delete(matricula);
 
@@ -39,17 +48,22 @@ namespace CursoIdiomasApp.Domain.Services
 
         public MatriculaResponse CreateMatricula(MatriculaRequest matriculaRequest)
         {
-            if(matriculaRepository.Exists(matriculaRequest.AlunoId, matriculaRequest.TurmaId))
+            var aluno = alunoRepository.GetById(matriculaRequest.AlunoId);
+
+            if(aluno == null)
             {
-                throw new DomainException("Aluno já está matriculado nessa turma");
+                throw new DomainException("Aluno não encontrado");
             }
 
-            if(matriculaRepository.CountByTurma(matriculaRequest.TurmaId) >= 5)
+            var turma = turmaRepository.GetByIdComMatriculas(matriculaRequest.TurmaId);
+
+            if (turma == null)
             {
-                throw new DomainException("Turma não poder ter mais que 5 alunos");
+                throw new DomainException("Turma não encontrado");
             }
 
-            var matricula = new Matricula(matriculaRequest.AlunoId, matriculaRequest.TurmaId);
+            //Como turma tem acesso à MatricularAluno() ?
+            var matricula = turma.MatricularAluno(aluno);
 
             matriculaRepository.Create(matricula);
 

@@ -12,6 +12,9 @@ namespace CursoIdiomasApp.Domain.Dtos.Requests
         string cpf,
 
         [Required(ErrorMessage = "O Email é obrigatório")]
-        string email
+        string email,
+
+        [Required]
+        Guid Turmaid
         );
 }
