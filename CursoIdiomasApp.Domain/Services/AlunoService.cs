@@ -15,15 +15,24 @@ namespace CursoIdiomasApp.Domain.Services
         public AlunoResponse CreateAluno(AlunoRequest alunoRequest)
         {
             var turma = turmaRepository.GetByIdComMatriculas(alunoRequest.Turmaid);
+            //passando os valores da request para os Value Object Cpf e Email
+            var cpf = new Cpf(alunoRequest.cpf);
+            var email = new Email(alunoRequest.email);
+
+            if (alunoRepository.ExistePorCpf(cpf))
+            {
+                throw new DomainException("CPF de aluno já cadastrado");
+            }
+
+            if (alunoRepository.ExistePorEmail(email))
+            {
+                throw new DomainException("Email de Aluno já cadastrado");
+            }
 
             if (turma == null)
             {
                 throw new DomainException("Turma não encontrada");
             }
-
-            //passando os valores da request para os Value Object Cpf e Email
-            var cpf = new Cpf(alunoRequest.cpf);
-            var email = new Email(alunoRequest.email);
 
             var aluno = new Aluno
             (

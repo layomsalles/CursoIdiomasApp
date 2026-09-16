@@ -1,5 +1,6 @@
 ﻿using CursoIdiomasApp.Domain.Entities;
 using CursoIdiomasApp.Domain.Interfaces.Repositories;
+using CursoIdiomasApp.Domain.Value_Objects;
 using CursoIdiomasApp.Infra.Data.Contexts;
 
 namespace CursoIdiomasApp.Infra.Data.Repositories
@@ -16,6 +17,16 @@ namespace CursoIdiomasApp.Infra.Data.Repositories
         {
             dataContext.Set<Aluno>().Remove(aluno);
             dataContext.SaveChanges();
+        }
+
+        public bool ExistePorCpf(Cpf cpf)
+        {
+            return dataContext.Set<Aluno>().Any(a => a.Cpf == cpf);
+        }
+
+        public bool ExistePorEmail(Email email)
+        {
+            return dataContext.Set<Aluno>().Any(a => a.Email == email);
         }
 
         public List<Aluno> GetAll()
