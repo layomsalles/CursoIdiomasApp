@@ -11,5 +11,7 @@
   <Folder Name="/Itens de Solução/">
     <File Path="docker-compose.yml" />
   </Folder>
-  <Folder Name="/Tests/" />
+  <Folder Name="/Tests/">
+    <Project Path="CursoIdiomasApp.Test/CursoIdiomasApp.Test.csproj" Id="6e628f24-523c-47b3-bde5-64ab1b2213a7" />
+  </Folder>
 </Solution>

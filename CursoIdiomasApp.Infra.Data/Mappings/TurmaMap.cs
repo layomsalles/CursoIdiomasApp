@@ -13,9 +13,10 @@ namespace CursoIdiomasApp.Infra.Data.Mappings
             builder.HasKey(t => t.Id);
 
             builder.Property(t => t.Numero).IsRequired();
-            builder.HasIndex(t => t.Numero).IsUnique();
 
             builder.Property(t => t.AnoLetivo).IsRequired();
+
+            builder.HasIndex(t => new { t.Numero, t.AnoLetivo }).IsUnique();
 
             builder.HasMany(t => t.Matriculas).WithOne().HasForeignKey(t => t.TurmaId);
         }

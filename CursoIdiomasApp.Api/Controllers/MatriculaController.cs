@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CursoIdiomasApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/matricula")]
     [ApiController]
     public class MatriculaController(IMatriculaService matriculaService) : ControllerBase
     {

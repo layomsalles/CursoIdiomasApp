@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CursoIdiomasApp.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/v1/turma")]
     [ApiController]
     public class TurmaController(ITurmaService turmaService) : ControllerBase
     {
@@ -24,7 +24,12 @@ namespace CursoIdiomasApp.Api.Controllers
             }
             catch(Exception ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(500, new { 
+                    message = ex.Message,
+                    innerException = ex.InnerException?.Message,
+                    innerInnerException = ex.InnerException?.InnerException?.Message
+                });
+                
             }
         }
 
